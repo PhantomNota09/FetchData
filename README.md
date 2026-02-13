@@ -30,30 +30,6 @@ The project follows a clean architecture pattern with:
 - [CoinGecko API](https://www.coingecko.com/en/api) - Cryptocurrency price data
 - [JSONPlaceholder API](https://jsonplaceholder.typicode.com/) - Sample user and todo data
 
-## Project Structure
-
-```
-FetchData/
-├── Models/
-│   └── Model.swift              # Data models for all APIs
-├── ViewControllers/
-│   ├── MainPageVC.swift         # Home screen with navigation
-│   ├── CoingeckoVC.swift        # Cryptocurrency prices view
-│   ├── TypicodeTableVC.swift    # Todo items table view
-│   └── UserDataVC.swift         # User directory view
-├── ViewModels/
-│   ├── CoingeckoViewModel.swift
-│   ├── TypicodeViewModel.swift
-│   └── UserDataViewModel.swift
-├── NetworkManagers/
-│   ├── CoingeckoNetworkManager.swift
-│   ├── TypicodeNetworkManager.swift
-│   └── UserDataNetworkManager.swift
-└── Views/
-    ├── TypicodeTableViewCell.swift
-    └── UserDataTableViewCell.swift
-```
-
 ## Usage
 
 ### Viewing Cryptocurrency Prices
@@ -70,4 +46,10 @@ FetchData/
 2. Browse the user list
 3. Tap any user to view detailed information including contact details and address
 
+## Screenshots
+<img width="120" height="262" alt="simulator_screenshot_C80F30AC-7A27-4D16-89BA-AF1542E5E783" src="https://github.com/user-attachments/assets/04865d65-7e94-49f0-9dc3-06679fc62470" />
+<img width="120" height="262" alt="simulator_screenshot_24AC427F-B0F9-4217-83A0-82520D62F930" src="https://github.com/user-attachments/assets/96de1e91-5f49-443b-a1c8-15fb3c8d4b12" />
+<img width="120" height="262" alt="simulator_screenshot_E39C5B3C-E9C3-4731-95A7-07584A77D1DC" src="https://github.com/user-attachments/assets/1a10dc30-8258-4b6c-b04b-e58045dd1258" />
+<img width="120" height="262" alt="simulator_screenshot_C65E0ACC-8253-4BB3-851C-A082063C22E9" src="https://github.com/user-attachments/assets/ea70ca2b-c9f8-470d-99aa-e3d15a096c99" />
+<img width="120" height="262" alt="simulator_screenshot_66091F02-8413-471B-B4BF-FB9C9A4489BF" src="https://github.com/user-attachments/assets/28a685d0-2628-4ea5-91ae-06e5a008c710" />
 
