@@ -1,5 +1,5 @@
 //
-//  TypicodeModel.swift
+//  UserModel.swift
 //
 //  Created by Surya Rayala on 2/13/26.
 //
