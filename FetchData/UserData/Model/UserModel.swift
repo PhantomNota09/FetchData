@@ -6,24 +6,6 @@
 
 import Foundation
 
-// Typicode Model
-struct TypicodeModel: Codable {
-    let userId: Int?
-    let id: Int?
-    let title: String?
-    let completed: Bool?
-}
-
-// CoinGecko Model
-struct CoinGeckoResponse: Codable {
-    let bitcoin: Price?
-    let ethereum: Price?
-}
-
-struct Price: Codable {
-    let usd: Double?
-}
-
 // UserData Model
 struct UserModel: Codable {
     let id : Int?
