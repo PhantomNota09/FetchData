@@ -8,7 +8,6 @@
 import Foundation
 class CoingeckoViewModel {
     var coinData: CoinGeckoResponse?
-    var isLoading: Bool = false
     
     private let networkService: CoingeckoNetworkManagerProtocol
     
@@ -21,7 +20,6 @@ class CoingeckoViewModel {
             coinData = try await networkService.fetchCoingeckoData(url: Server.CoinGeckoDataURL.rawValue)
         } catch {
             print("Failed to fetch data: \(error)")
-            coinData = nil
         }
     }
 }

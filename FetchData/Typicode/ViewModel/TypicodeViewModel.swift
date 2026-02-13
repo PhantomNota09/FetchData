@@ -9,7 +9,6 @@ import Foundation
 
 class TypicodeViewModel {
     var typicodeData: [TypicodeModel] = []
-    var isLoading: Bool = false
     
     private let networkService: TypicodeNetworkManagerProtocol
     

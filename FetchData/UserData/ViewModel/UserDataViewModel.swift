@@ -9,7 +9,6 @@ import Foundation
 
 class UserDataViewModel {
     var userData: [UserModel] = []
-    var isLoading: Bool = false
     
     private let networkService: UserDataNetworkManagerProtocol
     
@@ -22,7 +21,6 @@ class UserDataViewModel {
             userData = try await networkService.fetchUserData(url: Server.UserDataURL.rawValue)
         } catch {
             print("Failed to fetch data: \(error)")
-            userData = []
         }
     }
 }
