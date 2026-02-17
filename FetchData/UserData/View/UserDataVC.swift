@@ -13,7 +13,7 @@ class UserDataVC: UIViewController {
     var userTableView: UITableView?
     let viewModel: UserDataViewModel
     
-    init(viewModel: UserDataViewModel = UserDataViewModel(networkService: UserDataNetworkManager())) {
+    init(viewModel: UserDataViewModel = UserDataViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,13 +29,34 @@ class UserDataVC: UIViewController {
         
         setupTitleLabel()
         setupTableView()
-        
+        setupOfflineToggle()
+
         Task {
             await viewModel.fetchData()
             userTableView?.reloadData()
         }
     }
     
+    // MARK: - Offline Toggle
+
+    func setupOfflineToggle() {
+        let toggle = UISwitch()
+        toggle.isOn = true // starts online
+        toggle.addTarget(self, action: #selector(toggleOfflineMode(_:)), for: .valueChanged)
+        let barItem = UIBarButtonItem(customView: toggle)
+        navigationItem.rightBarButtonItem = barItem
+    }
+
+    @objc func toggleOfflineMode(_ sender: UISwitch) {
+        viewModel.isOnline = sender.isOn
+        Task {
+            await viewModel.fetchData()
+            userTableView?.reloadData()
+        }
+    }
+
+    // MARK: - UI Setup
+
     func setupTitleLabel() {
         userTitle = UILabel()
         userTitle?.text = "User Data"
@@ -118,7 +139,7 @@ class UserDataVC: UIViewController {
 
 extension UserDataVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.userData.count
+        return viewModel.userData.count //make a seperate func in viewmodel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

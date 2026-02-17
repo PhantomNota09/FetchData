@@ -6,18 +6,30 @@
 //
 
 import Foundation
+
 class CoingeckoViewModel {
     var coinData: CoinGeckoResponse?
-    
-    private let networkService: CoingeckoNetworkManagerProtocol
-    
-    init(networkService: CoingeckoNetworkManagerProtocol) {
-        self.networkService = networkService
+
+    var isOnline: Bool = true
+
+    private let liveService: CoingeckoNetworkManagerProtocol
+    private let mockService: CoingeckoNetworkManagerProtocol
+
+    init(
+        liveService: CoingeckoNetworkManagerProtocol = CoingeckoNetworkManager(),
+        mockService: CoingeckoNetworkManagerProtocol = MockCoingeckoNetworkManager.shared
+    ) {
+        self.liveService = liveService
+        self.mockService = mockService
     }
-    
+
+    private var activeService: CoingeckoNetworkManagerProtocol {
+        isOnline ? liveService : mockService
+    }
+
     func fetchData() async {
         do {
-            coinData = try await networkService.fetchCoingeckoData(url: Server.CoinGeckoDataURL.rawValue)
+            coinData = try await activeService.fetchCoingeckoData(url: Server.CoinGeckoDataURL.rawValue)
         } catch {
             print("Failed to fetch data: \(error)")
         }

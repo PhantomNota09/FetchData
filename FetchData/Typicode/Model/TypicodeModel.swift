@@ -12,4 +12,11 @@ struct TypicodeModel: Codable {
     let id: Int?
     let title: String?
     let completed: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case userId = "userId"
+        case id
+        case title
+        case completed
+    }
 }

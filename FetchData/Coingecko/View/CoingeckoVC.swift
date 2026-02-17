@@ -8,35 +8,38 @@
 import UIKit
 
 class CoingeckoVC: UIViewController {
-    
+
     var tableView: UITableView?
     var refreshControl: UIRefreshControl?
     let viewModel: CoingeckoViewModel
-    
-    init(viewModel: CoingeckoViewModel = CoingeckoViewModel(networkService: CoingeckoNetworkManager())) {
+
+    init(viewModel: CoingeckoViewModel = CoingeckoViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .white
         title = "Crypto Prices"
-        
+
         setupTableView()
         setupRefreshControl()
-        
+        setupOfflineToggle()
+
         Task {
             await viewModel.fetchData()
             tableView?.reloadData()
         }
     }
-    
+
+    // MARK: - UI Setup
+
     func setupTableView() {
         tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView?.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +47,7 @@ class CoingeckoVC: UIViewController {
         tableView?.dataSource = self
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "CoinCell")
         tableView?.allowsSelection = false
-        
+
         if let tableView = tableView {
             view.addSubview(tableView)
             NSLayoutConstraint.activate([
@@ -55,13 +58,32 @@ class CoingeckoVC: UIViewController {
             ])
         }
     }
-    
+
     func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView?.refreshControl = refreshControl
     }
     
+    
+    // MARK: - Offline Toggle
+
+    func setupOfflineToggle() {
+        let toggle = UISwitch()
+        toggle.isOn = true // starts online
+        toggle.addTarget(self, action: #selector(toggleOfflineMode(_:)), for: .valueChanged)
+        let barItem = UIBarButtonItem(customView: toggle)
+        navigationItem.rightBarButtonItem = barItem
+    }
+
+    @objc func toggleOfflineMode(_ sender: UISwitch) {
+        viewModel.isOnline = sender.isOn
+        Task {
+            await viewModel.fetchData()
+            tableView?.reloadData()
+        }
+    }
+
     @objc func refreshData() {
         Task {
             await viewModel.fetchData()
@@ -76,10 +98,10 @@ extension CoingeckoVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2 // Bitcoin and Ethereum
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CoinCell", for: indexPath)
-        
+
         if indexPath.row == 0 {
             if let bitcoinPrice = viewModel.coinData?.bitcoin?.usd {
                 cell.textLabel?.text = "Bitcoin: $\(bitcoinPrice)"
@@ -89,9 +111,9 @@ extension CoingeckoVC: UITableViewDataSource {
                 cell.textLabel?.text = "Ethereum: $\(ethereumPrice)"
             }
         }
-        
+
         cell.textLabel?.font = UIFont.systemFont(ofSize: 18)
-        
+
         return cell
     }
 }

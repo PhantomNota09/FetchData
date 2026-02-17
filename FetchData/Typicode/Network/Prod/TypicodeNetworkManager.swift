@@ -11,6 +11,10 @@ protocol TypicodeNetworkManagerProtocol {
 }
 
 class TypicodeNetworkManager: TypicodeNetworkManagerProtocol {
+    
+    static let shared = TypicodeNetworkManager()
+    init() {}
+    
     func fetchTypicodeData(url: String) async throws -> [TypicodeModel] {
         guard let url = URL(string: url) else {
             print("Invalid URL: \(url)")

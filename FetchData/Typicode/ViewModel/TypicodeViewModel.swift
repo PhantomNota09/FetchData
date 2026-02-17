@@ -9,16 +9,27 @@ import Foundation
 
 class TypicodeViewModel {
     var typicodeData: [TypicodeModel] = []
-    
-    private let networkService: TypicodeNetworkManagerProtocol
-    
-    init(networkService: TypicodeNetworkManagerProtocol) {
-        self.networkService = networkService
+
+    var isOnline: Bool = true
+
+    private let liveService: TypicodeNetworkManagerProtocol
+    private let mockService: TypicodeNetworkManagerProtocol
+
+    init(
+        liveService: TypicodeNetworkManagerProtocol = TypicodeNetworkManager.shared,
+        mockService: TypicodeNetworkManagerProtocol = MockTypicodeNetworkManager.shared
+    ) {
+        self.liveService = liveService
+        self.mockService = mockService
     }
-    
+
+    private var activeService: TypicodeNetworkManagerProtocol {
+        isOnline ? liveService : mockService
+    }
+
     func fetchData() async {
         do {
-            typicodeData = try await networkService.fetchTypicodeData(url: Server.TypicodeDataURL.rawValue)
+            typicodeData = try await activeService.fetchTypicodeData(url: Server.TypicodeDataURL.rawValue)
         } catch {
             print("Failed to fetch data: \(error)")
             typicodeData = []

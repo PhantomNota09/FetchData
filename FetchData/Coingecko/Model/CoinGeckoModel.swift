@@ -12,8 +12,16 @@ import Foundation
 struct CoinGeckoResponse: Codable {
     let bitcoin: Price?
     let ethereum: Price?
+
+    enum CodingKeys: String, CodingKey {
+        case bitcoin
+        case ethereum
+    }
 }
 
 struct Price: Codable {
     let usd: Double?
+    enum CodingKeys: String, CodingKey {
+        case usd
+    }
 }
