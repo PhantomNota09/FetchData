@@ -48,8 +48,12 @@ The project follows a clean architecture pattern with:
 
 ## Screenshots
 <img width="120" height="262" alt="simulator_screenshot_C80F30AC-7A27-4D16-89BA-AF1542E5E783" src="https://github.com/user-attachments/assets/04865d65-7e94-49f0-9dc3-06679fc62470" />
-<img width="120" height="262" alt="simulator_screenshot_24AC427F-B0F9-4217-83A0-82520D62F930" src="https://github.com/user-attachments/assets/96de1e91-5f49-443b-a1c8-15fb3c8d4b12" />
-<img width="120" height="262" alt="simulator_screenshot_E39C5B3C-E9C3-4731-95A7-07584A77D1DC" src="https://github.com/user-attachments/assets/1a10dc30-8258-4b6c-b04b-e58045dd1258" />
-<img width="120" height="262" alt="simulator_screenshot_C65E0ACC-8253-4BB3-851C-A082063C22E9" src="https://github.com/user-attachments/assets/ea70ca2b-c9f8-470d-99aa-e3d15a096c99" />
-<img width="120" height="262" alt="simulator_screenshot_66091F02-8413-471B-B4BF-FB9C9A4489BF" src="https://github.com/user-attachments/assets/28a685d0-2628-4ea5-91ae-06e5a008c710" />
 
+<img width="1206" height="2622" alt="simulator_screenshot_8CDA8047-EFCA-433C-AA9B-3081AC82C2A5" src="https://github.com/user-attachments/assets/74d50281-344d-4d7f-8d9c-74e7eed19c27" />
+<img width="1206" height="2622" alt="simulator_screenshot_AEA1F8C8-2063-4E25-B706-74ED189F9BB5" src="https://github.com/user-attachments/assets/83a179b2-a943-45f1-9236-bd329a5291d1" />
+
+<img width="1206" height="2622" alt="simulator_screenshot_431F6448-FC91-4305-AE03-D21C46459056" src="https://github.com/user-attachments/assets/1f23a5f3-31b2-45ea-80ca-88106a8af530" />
+<img width="1206" height="2622" alt="simulator_screenshot_E262EBC4-317A-4FA0-9BB9-085A47E455E8" src="https://github.com/user-attachments/assets/240874de-6b94-4128-844e-334df907bcf8" />
+
+<img width="1206" height="2622" alt="simulator_screenshot_6DB42BC9-ACE1-4AB9-9F4F-C661CC7F170D" src="https://github.com/user-attachments/assets/f82e6329-c4fa-415d-b891-b6672eea7df7" />
+<img width="1206" height="2622" alt="simulator_screenshot_93E0D8A0-C7EA-4018-B88E-84E2E632E3BE" src="https://github.com/user-attachments/assets/ac56339f-6b0c-4bd5-b7ea-6aed633e9845" />
